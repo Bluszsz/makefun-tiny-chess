@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/tiny-chess-01/Bluszsz/makefun-tiny-chess/rank.svg)](https://make.fun/bounty/tiny-chess-01)
 [![reward](https://make.fun/badge/tiny-chess-01/Bluszsz/makefun-tiny-chess/reward.svg)](https://make.fun/bounty/tiny-chess-01)
 
-A deterministic chess engine in a single `main.py` (4,077 bytes) for the
+A deterministic chess engine in a single `main.py` (3,331 bytes) for the
 [make.fun](https://make.fun) `tiny-chess-01` competition ($500). Python
 3.13, standard library only. It plays through the env over HTTP
 (`MAKEFUN_ENV_URL`): `POST /game`, `POST /move`, `POST /resign`.
@@ -17,12 +17,14 @@ A deterministic chess engine in a single `main.py` (4,077 bytes) for the
   ordering, check extension
 - Piece-square tables (symmetric, 4 files stored) + bishop pair +
   endgame-king table swap + passed-pawn bonus
-- Fixed budget: 40,000 nodes/move, max depth 7 — no wall clock, no
+- Fixed budget: 40,000 nodes/move, max depth 8 — no wall clock, no
   unseeded randomness, so replays are byte-identical
 
-`main.py` is an lzma-compressed payload (base85) with a one-line
-unpacker; the compressed bytes and the unpacker together are the 4,077
-bytes. It reads, imports or execs no other file in the repository.
+`main.py` is the kit's `makefun-compress/v1` packing of the readable
+source `source.py` (LZMA stream embedded as a latin-1 string literal);
+the stub and the payload together are the 3,331 bytes. The readable
+source is sent to make.fun with the transcript bundle, not committed.
+`main.py` reads, imports or execs no other file in the repository.
 
 ## Practice results (local, kit env server)
 
